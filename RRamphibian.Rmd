@@ -254,7 +254,7 @@ grid.raster(img)
 
 ## Issues
 * Colleagues/collaborators/journals use Microsoft Word
-* Opensource, but Complex, rapidly changing toolchain (knitr, rmarkdown, markdown,  
+* Opensource, relies on a complex, rapidly changing toolchain (knitr, rmarkdown, markdown,  
   [pandoc](http://johnmacfarlane.net/pandoc/))
 
 ## My Favorite Books and Web Resources

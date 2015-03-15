@@ -6,7 +6,7 @@ output: ioslides_presentation
 ---
 
 ```{r, echo=FALSE, message=FALSE}
-options(digits=2)
+options(digits=4)
 require(knitr)
 library(texreg)
 library(MASS)
@@ -162,13 +162,9 @@ The sum of 2 + 2 is `r 2+2`.
 
 ```{r}
 pi_1000 <- pscl::simpi(1000)
+pi_1000
 ```
 
-The Monte Carlo estimate for $\pi$ is `r pi_1000`.
-
-```{r calcPi, cache=TRUE}
-pi_M <- pscl::simpi(100000000)
-```
 
 ```{r, cache=TRUE, verbatim = TRUE}
 pi_M <- pscl::simpi(100000000)

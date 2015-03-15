@@ -1,0 +1,85 @@
+---
+title: "Reproducible Research with R and RStudio"
+author: "Dale Steele"
+date: "March 14, 2015"
+output: ioslides_presentation
+
+---
+
+## What is Reproducible Research?
+
+Recalculate the numbers and figures in a data analysis from the raw data using code
+tools that ingerate code, plain text and figures "literate programming"
+
+```{r}
+devtools::session_info()$packages
+```
+
+## Version control
+
+ ![Image](Images\git_plus_github.jpg)
+ 
+## Motivation
+-- Occassional data analyst
+-- Experience
+-- Master's thesis
+
+## Old Workflow
+-- USB drive --> email --> Dropbox --> github
+
+## Poll audience about their workflow
+
+> - Statistical program --> cut and paste
+> - Sweave --> pdf
+## Rules
+-- Everything is a text file
+-- Tidy data
+-- Raw data
+
+## common Features
+- Text is best!
+- Markup language (LaTeX, HTML, markdown, rmarkdown)
+
+## Two types of chunks
+
+- .Rnw (R+LaTeX) --> knitr (Sweave) --> .pdf
+
+<<>>=
+
+2+2
+
+@
+
+```{r}
+2+2
+```
+
+
+
+## R/RStudio/knitr/pandoc
+
+## git/Github
+
+
+
+## Slide with Bullets
+
+- The raw data
+- A tidy data set
+- Codebook describing earch variable and its values in the tidy data set
+- An explicit and exact recipe to go from 1 to 2
+-The ideal instruction list is a script
+
+
+## Slide with R Code and Output
+
+```{r}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r, echo=FALSE}
+plot(cars)
+```
+

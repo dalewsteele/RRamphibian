@@ -1,85 +1,277 @@
 ---
 title: "Reproducible Research with R and RStudio"
 author: "Dale Steele"
-date: "March 14, 2015"
+date: "March 16, 2015"
 output: ioslides_presentation
-
 ---
 
-## What is Reproducible Research?
+```{r, echo=FALSE, message=FALSE}
+options(digits=2)
+require(knitr)
+library(texreg)
+library(MASS)
+library(png)
+library(grid)
+```
 
-Recalculate the numbers and figures in a data analysis from the raw data using code
-tools that ingerate code, plain text and figures "literate programming"
+
+```{r echo = FALSE, message=FALSE}
+# For illustration purposes, display the chunk verbatim
+# Code from:  http://stackoverflow.com/questions/19908158/show-an-r-markdown-chunk-in-the-final-output
+hook_source_def = knit_hooks$get('source')
+knit_hooks$set(source = function(x, options){
+  if (!is.null(options$verbatim) && options$verbatim){
+    opts = gsub(",\\s*verbatim\\s*=\\s*TRUE\\s*", "", options$params.src)
+    bef = sprintf('\n\n    ```{r %s}\n', opts, "\n")
+    stringr::str_c(bef, paste(knitr:::indent_block(x, "    "), collapse = '\n'), "\n    ```\n")
+  } else {
+     hook_source_def(x, options)
+  }
+})
+```
+
+##
+![Once upon a time](Images\onceUponATime.jpg)
+
+## Seven years ago ...
+> - Phone call from brilliant somewhat frenetic friend and colleague
+> - Can you help me with a regression analysis?
+> - Lunch at Panera Bread with two laptops, a USB stick and breadsticks
+> - A few pleasant hours that evening noodling with an R script, later implemented in SAS
+> - Manuscript submitted to a high impact journal...
+> - Rejected!
+> - Submitted to an even higher impact journal...
+> - Rejected!!
+> - Submitted to a low impact journal...
+> - Rejected!!!
+    
+## Several months ago ...
+> - Submitted to a journal I'd never heard of...
+> - 53 emails, reams of SAS output, multiple MS Word files
+
+## Two weeks ago
+> - Revise and reconsider!!!!
+> - "laceartion.manuscript.reveision.WJEM.revisonpercomments.march2105.inclyuding acuity model.docx"
+> - **Can you just edit the methods and results section?**
+> - Do you remember why we didn't include *covariate X6* in the model?
+> - They want the revised manuscript next week
+
+## Old workflow | SAS/Stata or R script --> MS Word
+
+ ![Image](Images\ccp.png)
+ 
+## Then, I learned to use a **TEXT** editor | GNU Emacs developer -- Richard Stallman
+
+```{r fig.width=9, fig.height=6, echo=FALSE}
+img <- readPNG("Images\\Richard_Stallman.png")
+grid.raster(img)
+```
+
+## Master's Thesis | Emacs/ESS/Sweave/LaTeX/pdf
+
+```{r fig.width=9, fig.height=5, echo=FALSE}
+img <- readPNG("Images\\emacs_ess_Rnw.png")
+grid.raster(img)
+```
+
+
+## Reproducible Research
+* Given the raw data
+    + and code used to analyse the data
+    + and code used to generate figures, combined with
+    + text describing methods and interpreting results
+* someone else (or **future you**) can reproduce your analysis
+
+## Literate Programming | integrade code, plain text and figures
+* ![Image](Images\txt.png)
+ 
+* [Why Geeks Love Plain Text (And Why You Should Too)](http://www.lifehack.org/articles/technology/why-geeks-love-plain-text-and-why-you-should-too.html)
+
+## Reproducible today | Still reproducible in 5 years?
 
 ```{r}
-devtools::session_info()$packages
+head(devtools::session_info()$packages)
+```
+
+## Future Proofing
+
+* Language engines (julia, python, sas)
+* [Packrat: Reproducible package management for R](http://rstudio.github.io/packrat/)
+* Virtual Machines (on the cloud)
+
+## New workflow |R/RStudio (knitr/pandoc)
+
+ ![Image](Images\noCutAndPaste.jpg)
+ 
+## RStudio IDE
+
+```{r fig.width=9, fig.height=5, echo=FALSE}
+img2 <- readPNG("Images\\RStudio.png")
+grid.raster(img2)
+```
+
+## Literate Programming options 
+
+.Rnw (Sweave, knitr)
+
+.Rmd (knitr)
+
+* Combine
+    - R code (and now other code 'engines' including SAS, python, awk)
+    - Text markup language: LaTeX, rmarkdown
+
+* Output (after weave or knit): pdf, web pages, MSWord, slides
+
+
+## Chunks | .Rnw (R + Latex)
+
+```
+\documentclass{article}
+\begin{document}
+
+<<>>=
+2+2
+@
+
+\end{document}
+```
+
+## Chunks | .Rmd (R + rmarkdown)
+
+The chunk below does arithmetic in **R** and prints the result.
+
+```{r, verbatim = TRUE}
+2+2
+```
+
+## Inline R output
+
+```{r, echo=FALSE}
+# http://stackoverflow.com/questions/20409172/how-to-display-verbatim-inline-r-code-with-backticks-using-rmarkdown
+rinline <- function(code){
+  html <- '<code  class="r">``` `r CODE` ```</code>'
+  sub("CODE", code, html)
+}
+```
+
+The sum of 2 + 2 is `r rinline("2+2")`
+
+after 'knitting', produces:
+
+The sum of 2 + 2 is `r 2+2`. 
+
+
+## Chunk options | Cache time consuming calculations
+
+```{r}
+pi_1000 <- pscl::simpi(1000)
+```
+
+The Monte Carlo estimate for $\pi$ is `r pi_1000`.
+
+```{r calcPi, cache=TRUE}
+pi_M <- pscl::simpi(100000000)
+```
+
+```{r, cache=TRUE, verbatim = TRUE}
+pi_M <- pscl::simpi(100000000)
+```
+
+A better estimate for $\pi$ is `r pi_M`
+
+## Equations in R Markdown
+
+* LaTeX Inline Equations -- flanking $
+
+The Arithmetic mean is equal to $\frac{1}{n} \sum_{i=i}^{n} x_{i}$,
+or the summation of n numbers devided by n.
+
+* LaTeX Display Equations -- flanking $$
+
+$$
+  \begin{aligned}
+  \dot{x} & = \sigma(y-x) \\
+  \dot{y} & = \rho x - y = xz \\
+  \dot{z} & = -\beta z + xy
+  \end{aligned}
+$$
+
+## Painless and beautiful figures
+
+```{r ggplotFigure, echo=FALSE, message=FALSE}
+library(ggplot2)
+qplot(speed, dist, data=cars) + geom_smooth()
+```
+
+## Simple Tables
+
+```{r simpleTable, results='asis'}
+knitr::kable(mtcars[1:5,])
+```
+
+## Model Summary Tables
+
+Print pretty summary tables by extracting model components and converting to a matrix
+
+```{r logisticModel, message=FALSE}
+data(menarche)
+m <- glm(cbind(Menarche, Total-Menarche) ~ Age,
+         family=binomial(logit), data=menarche)
+
+OR <- exp(cbind(OR=coef(m), confint(m)))
+kable(OR)
+```
+
+## Beautiful model tables
+```{r texreg, results='asis'}
+htmlreg(m, caption="Age at Menarche", caption.above=TRUE,
+        inline.css = TRUE, doctype = TRUE, html.tag = TRUE,
+        head.tag = TRUE, body.tag = TRUE, ci.force=TRUE,
+        ci.test=NULL,bold=TRUE)
 ```
 
 ## Version control
 
- ![Image](Images\git_plus_github.jpg)
+[My github page for this talk](https:github.com/dalewsteele/RRamphibian)
+
+```{r fig.width=9, fig.height=6, echo=FALSE}
+img <- readPNG("Images\\my_github.png")
+grid.raster(img)
+```
+
+## Conclusions
+
+* Use RStudio (incorporates a good text editor)
+* Quick and Dirty analysis labnotes
+    - Write in rmarkdown, convert to html
+* Serious work (thesis, book, manuscripts)
+    - Write in Rnw, LaTeX, convert to pdf
+    - Try [Lyx](http://www.lyx.org/)
+* For students -- demand reproducible homework
+* Use distributive version control
+    - [git](http://git-scm.com)
+    - [Github](https://github.com)
+
+## Issues
+* Colleagues/collaborators/journals use Microsoft Word
+* Opensource, but Complex, rapidly changing toolchain (knitr, rmarkdown, markdown,  
+  [pandoc](http://johnmacfarlane.net/pandoc/))
+
+## My Favorite Books and Web Resources
+
+[Reproducible Research with R and R Studio](http://www.crcpress.com/product/isbn/9781466572843)
+
+[initial steps toward reproducible research](http://kbroman.org/steps2rr/)
+
+[Reproducible Research (part of the Johns Hopkins data science specialization at Coursera)](https://www.coursera.org/course/repdata)
  
-## Motivation
--- Occassional data analyst
--- Experience
--- Master's thesis
-
-## Old Workflow
--- USB drive --> email --> Dropbox --> github
-
-## Poll audience about their workflow
-
-> - Statistical program --> cut and paste
-> - Sweave --> pdf
-## Rules
--- Everything is a text file
--- Tidy data
--- Raw data
-
-## common Features
-- Text is best!
-- Markup language (LaTeX, HTML, markdown, rmarkdown)
-
-## Two types of chunks
-
-- .Rnw (R+LaTeX) --> knitr (Sweave) --> .pdf
-
-<<>>=
-
-2+2
-
-@
-
-```{r}
-2+2
-```
-
-
-
-## R/RStudio/knitr/pandoc
-
-## git/Github
-
-
-
-## Slide with Bullets
-
-- The raw data
-- A tidy data set
-- Codebook describing earch variable and its values in the tidy data set
-- An explicit and exact recipe to go from 1 to 2
--The ideal instruction list is a script
-
-
-## Slide with R Code and Output
-
-```{r}
-summary(cars)
-```
-
-## Slide with Plot
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
+[Dynamic Documents with R and Knitr](http://www.crcpress.com/product/isbn/9781482203530) -- 
+ [Xihui Xie](http://yihui.name/knitr/)
+ 
+[knitr in a knutshell](http://kbroman.org/knitr_knutshell/) 
+ 
+[RStudio](http://www.rstudio.com/products/rstudio/)
+ 
+[R packages: Git and GitHub by Hadley Wickham](http://r-pkgs.had.co.nz/git.html)
+ 
+ 

@@ -67,14 +67,6 @@ img <- readPNG("Images\\Richard_Stallman.png")
 grid.raster(img)
 ```
 
-## Master's Thesis | Emacs/ESS/Sweave/LaTeX/pdf
-
-```{r fig.width=9, fig.height=5, echo=FALSE}
-img <- readPNG("Images\\emacs_ess_Rnw.png")
-grid.raster(img)
-```
-
-
 ## Reproducible Research
 * Given the raw data
     + and code used to analyse the data
@@ -86,6 +78,13 @@ grid.raster(img)
 * ![Image](Images\txt.png)
  
 * [Why Geeks Love Plain Text (And Why You Should Too)](http://www.lifehack.org/articles/technology/why-geeks-love-plain-text-and-why-you-should-too.html)
+
+## Master's Thesis | Emacs/ESS/Sweave/LaTeX/pdf
+
+```{r fig.width=9, fig.height=5, echo=FALSE}
+img <- readPNG("Images\\emacs_ess_Rnw.png")
+grid.raster(img)
+```
 
 ## New workflow |R/RStudio (knitr/pandoc)
 

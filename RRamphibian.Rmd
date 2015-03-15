@@ -82,7 +82,7 @@ grid.raster(img)
     + text describing methods and interpreting results
 * someone else (or **future you**) can reproduce your analysis
 
-## Literate Programming | integrade code, plain text and figures
+## Literate Programming | integrate plain text and code
 * ![Image](Images\txt.png)
  
 * [Why Geeks Love Plain Text (And Why You Should Too)](http://www.lifehack.org/articles/technology/why-geeks-love-plain-text-and-why-you-should-too.html)
@@ -112,15 +112,16 @@ head(devtools::session_info()$packages)
 
 ## Literate Programming options 
 
-.Rnw (Sweave, knitr)
+* R noweb (.Rnw))
+    - R code chunks
+    - LaTeX
+    - Output(using Sweave or knitr) to produce pdf
 
-.Rmd (knitr)
-
-* Combine
-    - R code (and now other code 'engines' including SAS, python, awk)
-    - Text markup language: LaTeX, rmarkdown
-
-* Output (after weave or knit): pdf, web pages, MSWord, slides
+* Rmarkdown (.Rmd)
+    - R code chunks (and now other code 'engines' including SAS, python, awk)
+    - LaTeX or (r)markdown
+    - "knit" (using knitr), then output (using pandoc) to multiple possible formats
+        + pdf, web pages, html slides, even MSWord
 
 
 ## Chunks | .Rnw (R + Latex)
@@ -252,7 +253,7 @@ grid.raster(img4)
     - [git](http://git-scm.com)
     - [Github](https://github.com)
 
-## Issues
+## Challenges
 * Colleagues/collaborators/journals use Microsoft Word
 * Opensource: ~~not supported~~ amazing support
      - Must be willing to post [reproducible examples](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)

@@ -87,6 +87,17 @@ grid.raster(img)
  
 * [Why Geeks Love Plain Text (And Why You Should Too)](http://www.lifehack.org/articles/technology/why-geeks-love-plain-text-and-why-you-should-too.html)
 
+## New workflow |R/RStudio (knitr/pandoc)
+
+ ![Image](Images\noCutAndPaste.jpg)
+ 
+## RStudio IDE
+
+```{r fig.width=9, fig.height=5, echo=FALSE}
+img2 <- readPNG("Images\\RStudio.png")
+grid.raster(img2)
+```
+
 ## Reproducible today | Still reproducible in 5 years?
 
 ```{r}
@@ -98,17 +109,6 @@ head(devtools::session_info()$packages)
 * Language engines (julia, python, sas)
 * [Packrat: Reproducible package management for R](http://rstudio.github.io/packrat/)
 * Virtual Machines (on the cloud)
-
-## New workflow |R/RStudio (knitr/pandoc)
-
- ![Image](Images\noCutAndPaste.jpg)
- 
-## RStudio IDE
-
-```{r fig.width=9, fig.height=5, echo=FALSE}
-img2 <- readPNG("Images\\RStudio.png")
-grid.raster(img2)
-```
 
 ## Literate Programming options 
 
@@ -234,9 +234,9 @@ htmlreg(m, caption="Age at Menarche", caption.above=TRUE,
 
 [My github page for this talk](https:github.com/dalewsteele/RRamphibian)
 
-```{r fig.width=9, fig.height=6, echo=FALSE}
-img <- readPNG("Images\\my_github.png")
-grid.raster(img)
+```{r fig.width=9, fig.height=5, echo=FALSE}
+img4 <- readPNG("Images\\my_github.png")
+grid.raster(img4)
 ```
 
 ## Conclusions
@@ -254,8 +254,12 @@ grid.raster(img)
 
 ## Issues
 * Colleagues/collaborators/journals use Microsoft Word
-* Opensource, relies on a complex, rapidly changing toolchain (knitr, rmarkdown, markdown,  
-  [pandoc](http://johnmacfarlane.net/pandoc/))
+* Opensource: ~~not supported~~ amazing support
+     - Must be willing to post [reproducible examples](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+     
+* However, relies on a complex, rapidly changing toolchain
+    - (knitr, rmarkdown, markdown,[pandoc](http://johnmacfarlane.net/pandoc/))
+
 
 ## My Favorite Books and Web Resources
 

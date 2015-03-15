@@ -79,18 +79,15 @@ grid.raster(img)
  
 * [Why Geeks Love Plain Text (And Why You Should Too)](http://www.lifehack.org/articles/technology/why-geeks-love-plain-text-and-why-you-should-too.html)
 
-## Master's Thesis | Emacs/ESS/Sweave/LaTeX/pdf
+## 2011 Master's Thesis | Emacs/ESS/Sweave/LaTeX/pdf
 
 ```{r fig.width=9, fig.height=5, echo=FALSE}
 img <- readPNG("Images\\emacs_ess_Rnw.png")
 grid.raster(img)
 ```
 
-## New workflow |R/RStudio (knitr/pandoc)
 
- ![Image](Images\noCutAndPaste.jpg)
- 
-## RStudio IDE
+## 2015 -- RStudio IDE
 
 ```{r fig.width=9, fig.height=5, echo=FALSE}
 img2 <- readPNG("Images\\RStudio.png")

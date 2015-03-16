@@ -241,7 +241,7 @@ grid.raster(img4)
 * Serious work (thesis, book, manuscripts)
     - Write in Rnw, LaTeX, convert to pdf
     - Try [Lyx](http://www.lyx.org/)
-* For students -- demand reproducible homework
+* For students/trainees -- demand reproducible homework/analysis notebooks
 * Use distributive version control
     - [git](http://git-scm.com)
     - [Github](https://github.com)

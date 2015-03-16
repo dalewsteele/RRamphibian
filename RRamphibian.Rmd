@@ -2,7 +2,7 @@
 title: "Reproducible Research with R and RStudio"
 author: "Dale Steele"
 date: "March 16, 2015"
-output: ioslides_presentation
+output: slidy_presentation
 ---
 
 ```{r, echo=FALSE, message=FALSE}
@@ -34,13 +34,13 @@ knit_hooks$set(source = function(x, options){
 ![Once upon a time](Images\onceUponATime.jpg)
 
 ## Seven years ago ...
-> - Phone call from brilliant somewhat frenetic friend and colleague
+> - Phone call from brilliant, if somewhat frenetic friend and colleague
 > - Can you help me with a regression analysis?
 > - Lunch at Panera Bread with two laptops, a USB stick and breadsticks
 > - A few pleasant hours that evening noodling with an R script, later implemented in SAS
 > - Manuscript submitted to a high impact journal...
 > - Rejected!
-> - Submitted to an even higher impact journal...
+> - Submitted to an somewhat lower impact journal...
 > - Rejected!!
 > - Submitted to a low impact journal...
 > - Rejected!!!
